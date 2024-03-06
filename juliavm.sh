@@ -116,7 +116,10 @@ juliavm_get_file_name(){
 
 juliavm_get_download_url(){
   file=$(juliavm_get_file_name $1 $2)
-  major=${1:0:3}'/'
+  # major=${1:0:3}'/'
+  major=`echo $1 | cut -d. -f1`
+  minor=`echo $1 | cut -d. -f2`
+  major="${major}.${minor}/"
 
   if [[ "$2" == '-x86' ]]; then
     arch='x86/'
